@@ -91,7 +91,12 @@ namespace dotnet5_webapp.Controllers
             _context.Contacts.Remove(contact);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            //After delete no content found, to show nothing
+            //return NoContent();
+
+
+            //Now it shows all contacts after deleted one
+            return Ok(_context.Contacts);
         }
 
         private bool ContactExists(int id)
