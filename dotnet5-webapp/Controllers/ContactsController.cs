@@ -81,7 +81,11 @@ namespace dotnet5_webapp.Controllers
             _context.Contacts.Add(contact);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetContact", new { id = contact.Id }, contact);
+            //To have the contact we added
+            //return CreatedAtAction("GetContact", new { id = contact.Id }, contact);
+
+            // To have all contacts in the db
+            return Ok(_context.Contacts);
         }
 
         // DELETE: api/Contacts/5
