@@ -25,7 +25,7 @@ namespace dotnet5_webapp.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Contact>>> GetContacts()
         {
-            return await _context.Contacts.ToListAsync();
+            return await _context.Contacts.Where(c => c.IsDeleted == false).ToListAsync();
         }
 
         // GET: api/Contacts/5
@@ -88,7 +88,11 @@ namespace dotnet5_webapp.Controllers
                 return NotFound();
             }
 
-            _context.Contacts.Remove(contact);
+            // Make it comment to use a fake delete 
+            //_context.Contacts.Remove(contact);
+
+            //the fake delete
+            contact.IsDeleted = true;
             await _context.SaveChangesAsync();
 
             //After delete no content found, to show nothing
